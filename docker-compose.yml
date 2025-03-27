@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - BOT_SERVICE_URL=http://python-bot:8000
+    depends_on:
+      - python-bot
+
+  python-bot:
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - WEBHOOK_HOST=${WEBHOOK_HOST}
+
