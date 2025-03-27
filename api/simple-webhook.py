@@ -53,29 +53,158 @@ DISTRICTS = [
     "Волоколамский район",
     "Воскресенский район",
     "Дмитровский район",
-    "Домодедовский район"
+    "Домодедовский район",
+    "Дубна",
+    "Егорьевский район",
+    "Железнодорожный",
+    "Жуковский",
+    "Зарайский район",
+    "Звенигород",
+    "Ивантеевка",
+    "Истринский район",
+    "Каширский район",
+    "Климовск",
+    "Клинский район",
+    "Коломенский район",
+    "Королёв",
+    "Красногорский район",
+    "Ленинский район",
+    "Лотошинский район",
+    "Луховицкий район",
+    "Люберцы",
+    "Можайский район",
+    "Москва",
+    "Наро-Фоминский район",
+    "Ногинский район",
+    "Одинцовский район",
+    "Озёрский район",
+    "Пушкинский район",
+    "Раменский район",
+    "Рублёво",
+    "Рузский район",
+    "Сергиево-Посадский район",
+    "Серебряно-Прудский район",
+    "Серпуховский район",
+    "Ступинский район",
+    "Щёлковский район",
+    "Талдомский район",
+    "Чеховский район",
+    "Шатурский район",
+    "Шаховский район",
+    "Электросталь",
+    "Электроугли"
 ]
 
-# Глубины для районов (упрощенный вариант)
+# Глубины для районов (из предоставленных данных)
 DISTRICT_DEPTHS = {
-    "Александровский район": [40, 50, 60, 70, 80, 90, 100],
-    "Балашихинский район": [15, 20, 25, 30, 35, 40],
-    "Бронницы": [45, 50, 55, 60, 65],
-    "Видное": [20, 25, 30],
-    "Волоколамский район": [30, 35, 40, 45, 50, 55, 60],
-    "Воскресенский район": [35, 40, 45, 50, 55, 60],
-    "Дмитровский район": [30, 40, 50, 70, 80, 90, 100],
-    "Домодедовский район": [25, 30, 35, 40, 45, 50, 60, 70, 80, 90]
+    "Александровский район": [[40, 60], [60, 180]],
+    "Балашихинский район": [[15, 40], [30, 160]],
+    "Бронницы": [[45, 65]],
+    "Видное": [[20, 30], [25, 120]],
+    "Волоколамский район": [[30, 60], [35, 180]],
+    "Воскресенский район": [[35, 100]],
+    "Дмитровский район": [[30, 50], [60, 80], [70, 180]],
+    "Домодедовский район": [[25, 90]],
+    "Дубна": [[25, 50], [70, 110]],
+    "Егорьевский район": [[40, 100]],
+    "Железнодорожный": [],
+    "Жуковский": [[50, 85]],
+    "Зарайский район": [[45, 110]],
+    "Звенигород": [[15, 30], [45, 120]],
+    "Ивантеевка": [[15, 40], [45, 110]],
+    "Истринский район": [[15, 40], [55, 80], [60, 180]],
+    "Каширский район": [[40, 150]],
+    "Климовск": [[45, 75]],
+    "Клинский район": [[30, 50], [60, 80], [70, 180]],
+    "Коломенский район": [[45, 90]],
+    "Королёв": [[45, 70]],
+    "Красногорский район": [[60, 120]],
+    "Ленинский район": [[20, 30], [25, 120]],
+    "Лотошинский район": [[25, 50], [45, 120]],
+    "Луховицкий район": [[15, 30], [30, 100]],
+    "Люберцы": [[10, 20], [25, 100]],
+    "Можайский район": [[25, 50], [45, 130]],
+    "Москва": [],
+    "Наро-Фоминский район": [[15, 40], [25, 140]],
+    "Ногинский район": [[15, 30], [20, 100]],
+    "Одинцовский район": [[15, 50], [40, 160]],
+    "Озёрский район": [],
+    "Пушкинский район": [[15, 60], [45, 120]],
+    "Раменский район": [[15, 30], [15, 120]],
+    "Рублёво": [[15, 40], [60, 110]],
+    "Рузский район": [[15, 40], [20, 180]],
+    "Сергиево-Посадский район": [[15, 40], [50, 90], [70, 250]],
+    "Серебряно-Прудский район": [[50, 100]],
+    "Серпуховский район": [[25, 130]],
+    "Ступинский район": [[15, 100]],
+    "Щёлковский район": [[10, 30], [15, 90]],
+    "Талдомский район": [[15, 50], [60, 130]],
+    "Чеховский район": [[30, 60]],
+    "Шатурский район": [],
+    "Шаховский район": [[15, 40], [50, 130]],
+    "Электросталь": [[25, 60]],
+    "Электроугли": [[25, 60]]
 }
 
-# Оборудование и цены
-EQUIPMENT = {
-    "Скважинный насос Belamos tf 80-110": 25000,
-    "Насос Grundfos SQ 3-65": 45000,
-    "Кессон пластиковый": 35000,
-    "Гидроаккумулятор 50 л": 6000,
-    "Оголовок скважины": 3500,
-    "Фильтр грубой очистки": 3000
+# Наборы оборудования и их компоненты
+EQUIPMENT_SETS = {
+    "Адаптер №1": {
+        "насос": 25000,
+        "колонка": 8000
+    },
+    "Адаптер №2": {
+        "насос": 25000,
+        "реле": 800,
+        "обвязка": 300
+    },
+    "Адаптер №3": {
+        "насос": 25000,
+        "гидроаккумулятор": 8000,
+        "доведение внутрь объекта": 5000
+    },
+    "Кессон №1": {
+        "кессон": 75000,
+        "обратный клапан": 3300,
+        "блок автоматики": 5830,
+        "трос": 8800,
+        "кабель": 16500,
+        "зажим троса": 200,
+        "фильтр компресс. переход": 350,
+        "труба PPR Ø32": 130,
+        "труба ПНД Ø32": 10000,
+        "запорная арматура, фитинги": 6000,
+        "оголовок": 3500
+    },
+    "Кессон №2": {
+        "кессон": 75000,
+        "обратный клапан": 3300,
+        "блок автоматики": 5830,
+        "трос": 8800,
+        "кабель": 16500,
+        "зажим троса": 200,
+        "фильтр компресс. переход": 350,
+        "труба PPR Ø32": 130,
+        "труба ПНД Ø32": 500,
+        "запорная арматура, фитинги": 6000,
+        "оголовок": 3500
+    },
+    "Кессон №3": {
+        "кессон": 75000,
+        "обратный клапан": 3300,
+        "блок автоматики": 5830,
+        "трос": 8800,
+        "кабель": 16500,
+        "зажим троса": 200,
+        "фильтр компресс. переход": 350,
+        "труба PPR Ø32": 130,
+        "труба ПНД Ø32": 500,
+        "запорная арматура, фитинги": 6000,
+        "оголовок": 3500
+    },
+    "Станция биологической очистки": {
+        "насос для принудительного выброса очищенной воды": 7500,
+        "колодец в три кольца с крышкой": 45000
+    }
 }
 
 # Услуги и цены
@@ -131,34 +260,65 @@ def create_districts_keyboard():
 
 # Функция для создания клавиатуры с глубинами
 def create_depths_keyboard(district):
-    depths = DISTRICT_DEPTHS.get(district, [30, 40, 50])
+    depths = DISTRICT_DEPTHS.get(district, [])
     keyboard = []
-    row = []
     
-    for i, depth in enumerate(depths, 1):
-        row.append({"text": f"{depth} м", "callback_data": f"depth_{depth}"})
-        
-        # По 3 кнопки в ряду
-        if i % 3 == 0 or i == len(depths):
+    if not depths:
+        # Если для района нет данных по глубинам, предлагаем стандартные значения
+        depths = [[20, 50], [60, 100]]
+    
+    # Перебираем диапазоны глубин и создаем кнопки
+    for depth_range in depths:
+        start_depth, end_depth = depth_range
+        row = []
+        # Добавляем несколько значений из диапазона
+        step = max(5, (end_depth - start_depth) // 4)
+        for depth in range(start_depth, end_depth + 1, step):
+            row.append({"text": f"{depth} м", "callback_data": f"depth_{depth}"})
+            if len(row) == 3:  # Максимум 3 кнопки в ряду
+                keyboard.append(row)
+                row = []
+        if row:  # Добавляем оставшиеся кнопки, если есть
             keyboard.append(row)
-            row = []
     
     return {"inline_keyboard": keyboard}
 
-# Функция для создания клавиатуры с оборудованием
+# Функция для создания клавиатуры с наборами оборудования
+def create_equipment_sets_keyboard(selected_set=None):
+    keyboard = []
+    
+    for equipment_set in EQUIPMENT_SETS.keys():
+        prefix = "✅ " if equipment_set == selected_set else ""
+        total_price = sum(EQUIPMENT_SETS[equipment_set].values())
+        keyboard.append([{
+            "text": f"{prefix}{equipment_set} - {total_price} руб.",
+            "callback_data": f"equipment_set_{equipment_set}"
+        }])
+    
+    keyboard.append([{"text": "Индивидуальный набор", "callback_data": "equipment_custom"}])
+    keyboard.append([{"text": "Продолжить без оборудования", "callback_data": "equipment_done"}])
+    return {"inline_keyboard": keyboard}
+
+# Функция для создания клавиатуры с отдельными компонентами оборудования
 def create_equipment_keyboard(selected_equipment=None):
     if selected_equipment is None:
         selected_equipment = []
     
+    # Собираем все уникальные компоненты из всех наборов
+    all_components = {}
+    for equipment_set in EQUIPMENT_SETS.values():
+        for component, price in equipment_set.items():
+            all_components[component] = price
+    
     keyboard = []
-    for equip, price in EQUIPMENT.items():
-        prefix = "✅ " if equip in selected_equipment else ""
+    for component, price in all_components.items():
+        prefix = "✅ " if component in selected_equipment else ""
         keyboard.append([{
-            "text": f"{prefix}{equip} - {price} руб.",
-            "callback_data": f"equipment_{equip}"
+            "text": f"{prefix}{component} - {price} руб.",
+            "callback_data": f"equipment_{component}"
         }])
     
-    keyboard.append([{"text": "Завершить выбор оборудования", "callback_data": "equipment_done"}])
+    keyboard.append([{"text": "Завершить выбор компонентов", "callback_data": "equipment_done"}])
     return {"inline_keyboard": keyboard}
 
 # Функция для создания клавиатуры с услугами
@@ -187,7 +347,7 @@ def calculate_total_cost(district, depth, selected_equipment, selected_services)
     drilling_cost = calculate_drilling_cost(district, depth)
     
     # Стоимость оборудования
-    equipment_cost = sum(EQUIPMENT.get(item, 0) for item in selected_equipment)
+    equipment_cost = sum(EQUIPMENT_SETS.get(item, 0) for item in selected_equipment)
     
     # Стоимость услуг
     services_cost = sum(SERVICES.get(item, 0) for item in selected_services)
@@ -198,11 +358,25 @@ def calculate_total_cost(district, depth, selected_equipment, selected_services)
 def create_final_message(user_data):
     district = user_data.get('district', 'Не выбран')
     depth = user_data.get('depth', 0)
+    equipment_set = user_data.get('equipment_set')
     selected_equipment = user_data.get('selected_equipment', [])
     selected_services = user_data.get('selected_services', [])
     
     drilling_cost = calculate_drilling_cost(district, depth)
-    equipment_cost = sum(EQUIPMENT.get(item, 0) for item in selected_equipment)
+    
+    # Если выбран готовый набор оборудования
+    if equipment_set and equipment_set in EQUIPMENT_SETS:
+        equipment_items = EQUIPMENT_SETS[equipment_set]
+        equipment_cost = sum(equipment_items.values())
+    else:
+        # Собираем все уникальные компоненты из всех наборов для расчета цены
+        all_components = {}
+        for equipment_set in EQUIPMENT_SETS.values():
+            for component, price in equipment_set.items():
+                all_components[component] = price
+        
+        equipment_cost = sum(all_components.get(item, 0) for item in selected_equipment)
+    
     services_cost = sum(SERVICES.get(item, 0) for item in selected_services)
     total_cost = drilling_cost + equipment_cost + services_cost
     
@@ -212,10 +386,21 @@ def create_final_message(user_data):
     
     message += f"💰 *Стоимость бурения:* {drilling_cost} руб.\n\n"
     
-    if selected_equipment:
+    if equipment_set and equipment_set in EQUIPMENT_SETS:
+        message += f"🔧 *Выбранный набор:* {equipment_set}\n"
+        for item, price in EQUIPMENT_SETS[equipment_set].items():
+            message += f"• {item} - {price} руб.\n"
+        message += f"*Итого за оборудование:* {equipment_cost} руб.\n\n"
+    elif selected_equipment:
+        # Собираем все уникальные компоненты из всех наборов для вывода
+        all_components = {}
+        for equipment_set in EQUIPMENT_SETS.values():
+            for component, price in equipment_set.items():
+                all_components[component] = price
+        
         message += f"🔧 *Выбранное оборудование:*\n"
         for item in selected_equipment:
-            price = EQUIPMENT.get(item, 0)
+            price = all_components.get(item, 0)
             message += f"• {item} - {price} руб.\n"
         message += f"*Итого за оборудование:* {equipment_cost} руб.\n\n"
     
@@ -288,6 +473,7 @@ def process_message(message):
             'state': UserState.START.value,
             'district': None,
             'depth': None,
+            'equipment_set': None,
             'selected_equipment': [],
             'selected_services': [],
             'timestamp': time.time()
@@ -300,6 +486,7 @@ def process_message(message):
             'state': UserState.DISTRICT_SELECTION.value,
             'district': None,
             'depth': None,
+            'equipment_set': None,
             'selected_equipment': [],
             'selected_services': [],
             'timestamp': time.time()
@@ -316,11 +503,12 @@ def process_message(message):
             "chat_id": chat_id,
             "text": "🔹 *Команды бота*:\n\n"
                    "/start - начать расчет стоимости бурения\n"
-                   "/help - показать эту справку\n\n"
+                   "/help - показать эту справку\n"
+                   "/reset - сбросить текущий расчет\n\n"
                    "🔹 *Как пользоваться*:\n\n"
                    "1. Выберите район\n"
                    "2. Укажите глубину бурения\n"
-                   "3. Выберите необходимое оборудование\n"
+                   "3. Выберите набор оборудования или отдельные компоненты\n"
                    "4. Выберите дополнительные услуги\n"
                    "5. Получите итоговый расчет стоимости\n\n"
                    "Для начала работы отправьте команду /start",
@@ -333,6 +521,7 @@ def process_message(message):
             'state': UserState.START.value,
             'district': None,
             'depth': None,
+            'equipment_set': None,
             'selected_equipment': [],
             'selected_services': [],
             'timestamp': time.time()
@@ -365,6 +554,7 @@ def process_callback_query(callback_query):
             'state': UserState.START.value,
             'district': None,
             'depth': None,
+            'equipment_set': None,
             'selected_equipment': [],
             'selected_services': [],
             'timestamp': time.time()
@@ -405,44 +595,92 @@ def process_callback_query(callback_query):
             "message_id": message_id,
             "text": f"📏 Выбрана глубина: *{depth} м*\n\n"
                    f"💰 Стоимость бурения: *{drilling_cost} руб.*\n\n"
-                   f"Выберите необходимое оборудование:",
+                   f"Выберите набор оборудования:",
+            "parse_mode": "Markdown",
+            "reply_markup": create_equipment_sets_keyboard(user_data.get('equipment_set'))
+        })
+    
+    # Обработка выбора набора оборудования
+    elif callback_data.startswith('equipment_set_'):
+        equipment_set = callback_data.replace('equipment_set_', '')
+        user_data['equipment_set'] = equipment_set
+        user_data['selected_equipment'] = list(EQUIPMENT_SETS[equipment_set].keys())
+        user_data['state'] = UserState.SERVICES_SELECTION.value
+        
+        # Рассчитываем стоимость оборудования
+        equipment_cost = sum(EQUIPMENT_SETS[equipment_set].values())
+        
+        telegram_api_request("editMessageText", {
+            "chat_id": chat_id,
+            "message_id": message_id,
+            "text": f"🔧 Выбран набор: *{equipment_set}*\n\n"
+                   f"💰 Стоимость оборудования: *{equipment_cost} руб.*\n\n"
+                   f"Теперь выберите дополнительные услуги:",
+            "parse_mode": "Markdown",
+            "reply_markup": create_services_keyboard(user_data.get('selected_services', []))
+        })
+    
+    # Обработка запроса на индивидуальный набор оборудования
+    elif callback_data == 'equipment_custom':
+        user_data['equipment_set'] = None
+        user_data['selected_equipment'] = []
+        
+        telegram_api_request("editMessageText", {
+            "chat_id": chat_id,
+            "message_id": message_id,
+            "text": f"🔧 Выберите компоненты оборудования по отдельности:",
             "parse_mode": "Markdown",
             "reply_markup": create_equipment_keyboard(user_data.get('selected_equipment', []))
         })
     
-    # Обработка выбора оборудования
+    # Обработка выбора компонентов оборудования
     elif callback_data.startswith('equipment_'):
         if callback_data == 'equipment_done':
             user_data['state'] = UserState.SERVICES_SELECTION.value
             
+            # Собираем все уникальные компоненты из всех наборов для расчета цены
+            all_components = {}
+            for equipment_set in EQUIPMENT_SETS.values():
+                for component, price in equipment_set.items():
+                    all_components[component] = price
+            
+            # Рассчитываем стоимость выбранного оборудования
+            equipment_cost = sum(all_components.get(item, 0) for item in user_data.get('selected_equipment', []))
+            
             telegram_api_request("editMessageText", {
                 "chat_id": chat_id,
                 "message_id": message_id,
-                "text": "🔧 Выбор оборудования завершен.\n\nТеперь выберите дополнительные услуги:",
+                "text": "🔧 Выбор оборудования завершен.\n\n"
+                       f"💰 Стоимость оборудования: *{equipment_cost} руб.*\n\n"
+                       f"Теперь выберите дополнительные услуги:",
+                "parse_mode": "Markdown",
                 "reply_markup": create_services_keyboard(user_data.get('selected_services', []))
             })
         else:
-            equipment_item = callback_data.replace('equipment_', '')
+            component = callback_data.replace('equipment_', '')
             
-            # Переключаем выбор оборудования (добавляем или удаляем)
+            # Переключаем выбор компонента (добавляем или удаляем)
             if 'selected_equipment' not in user_data:
                 user_data['selected_equipment'] = []
                 
-            if equipment_item in user_data['selected_equipment']:
-                user_data['selected_equipment'].remove(equipment_item)
+            if component in user_data['selected_equipment']:
+                user_data['selected_equipment'].remove(component)
             else:
-                user_data['selected_equipment'].append(equipment_item)
+                user_data['selected_equipment'].append(component)
             
-            drilling_cost = calculate_drilling_cost(user_data['district'], user_data['depth'])
-            equipment_cost = sum(EQUIPMENT.get(item, 0) for item in user_data['selected_equipment'])
+            # Собираем все уникальные компоненты из всех наборов для расчета цены
+            all_components = {}
+            for equipment_set in EQUIPMENT_SETS.values():
+                for comp, price in equipment_set.items():
+                    all_components[comp] = price
+            
+            equipment_cost = sum(all_components.get(item, 0) for item in user_data['selected_equipment'])
             
             telegram_api_request("editMessageText", {
                 "chat_id": chat_id,
                 "message_id": message_id,
-                "text": f"📏 Глубина: *{user_data['depth']} м*\n"
-                       f"💰 Стоимость бурения: *{drilling_cost} руб.*\n"
-                       f"🔧 Стоимость оборудования: *{equipment_cost} руб.*\n\n"
-                       f"Выберите необходимое оборудование:",
+                "text": f"🔧 Выберите компоненты оборудования:\n"
+                       f"💰 Текущая стоимость оборудования: *{equipment_cost} руб.*\n\n",
                 "parse_mode": "Markdown",
                 "reply_markup": create_equipment_keyboard(user_data['selected_equipment'])
             })
@@ -482,7 +720,19 @@ def process_callback_query(callback_query):
                 user_data['selected_services'].append(service_item)
             
             drilling_cost = calculate_drilling_cost(user_data['district'], user_data['depth'])
-            equipment_cost = sum(EQUIPMENT.get(item, 0) for item in user_data['selected_equipment'])
+            
+            # Расчет стоимости оборудования
+            if user_data.get('equipment_set') and user_data['equipment_set'] in EQUIPMENT_SETS:
+                equipment_cost = sum(EQUIPMENT_SETS[user_data['equipment_set']].values())
+            else:
+                # Собираем все уникальные компоненты
+                all_components = {}
+                for equipment_set in EQUIPMENT_SETS.values():
+                    for component, price in equipment_set.items():
+                        all_components[component] = price
+                
+                equipment_cost = sum(all_components.get(item, 0) for item in user_data.get('selected_equipment', []))
+            
             services_cost = sum(SERVICES.get(item, 0) for item in user_data['selected_services'])
             
             telegram_api_request("editMessageText", {
@@ -504,6 +754,7 @@ def process_callback_query(callback_query):
             'state': UserState.DISTRICT_SELECTION.value,
             'district': None,
             'depth': None,
+            'equipment_set': None,
             'selected_equipment': [],
             'selected_services': [],
             'timestamp': time.time()
