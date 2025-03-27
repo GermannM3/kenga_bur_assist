@@ -3,8 +3,6 @@ import json
 import os
 import logging
 import asyncio
-from aiogram import Bot, Dispatcher, types
-from aiogram.types import ParseMode
 import sys
 
 # Настройка логирования
@@ -17,51 +15,66 @@ if not BOT_TOKEN:
     logger.error("TELEGRAM_BOT_TOKEN не установлен")
     BOT_TOKEN = "7559539951:AAG3SL-275Z0-4M24MUrA5p7feNd-SW1py4"  # Используем резервный токен
 
-# Инициализация бота и диспетчера
-bot = Bot(token=BOT_TOKEN)
-dp = Dispatcher(bot)
-
-# Простой обработчик команды /start для тестирования
-async def cmd_start(message: types.Message):
-    logger.info(f"Получена команда /start от пользователя {message.from_user.id}")
-    await message.answer(
-        "👋 Привет! Я бот для расчета стоимости бурения скважин.\n\n"
-        "Пожалуйста, используйте команду /calc для начала расчета."
-    )
-
-# Простой обработчик команды /help
-async def cmd_help(message: types.Message):
-    logger.info(f"Получена команда /help от пользователя {message.from_user.id}")
-    await message.answer(
-        "📋 Помощь по боту:\n\n"
-        "/start - начать работу с ботом\n"
-        "/calc - начать расчет стоимости бурения\n"
-        "/help - показать эту справку"
-    )
-
-# Простой обработчик для тестового сообщения
-async def test_message_handler(message: types.Message):
-    logger.info(f"Получено сообщение от пользователя {message.from_user.id}: {message.text}")
-    await message.answer("Получил ваше сообщение. Для начала работы введите /start")
-
-# Регистрация обработчиков
-dp.register_message_handler(cmd_start, commands=["start"])
-dp.register_message_handler(cmd_help, commands=["help"])
-dp.register_message_handler(test_message_handler)
-
-# Функция для обработки обновлений от Telegram
-async def process_update(update_json):
-    logger.info("Получено обновление от Telegram")
-    logger.info(f"Данные обновления: {json.dumps(update_json)[:200]}...")
+try:
+    from aiogram import Bot, Dispatcher, types
+    from aiogram.types import ParseMode
     
-    # Создаем объект Update из JSON-данных
-    update = types.Update(**update_json)
+    # Инициализация бота и диспетчера
+    bot = Bot(token=BOT_TOKEN)
+    dp = Dispatcher(bot)
     
-    # Обрабатываем обновление через диспетчер
-    results = await dp.process_update(update)
-    logger.info(f"Результаты обработки: {results}")
+    # Простой обработчик команды /start для тестирования
+    async def cmd_start(message: types.Message):
+        logger.info(f"Получена команда /start от пользователя {message.from_user.id}")
+        await message.answer(
+            "👋 Привет! Я бот для расчета стоимости бурения скважин.\n\n"
+            "Пожалуйста, используйте команду /calc для начала расчета."
+        )
     
-    return {"ok": True}
+    # Простой обработчик команды /help
+    async def cmd_help(message: types.Message):
+        logger.info(f"Получена команда /help от пользователя {message.from_user.id}")
+        await message.answer(
+            "📋 Помощь по боту:\n\n"
+            "/start - начать работу с ботом\n"
+            "/calc - начать расчет стоимости бурения\n"
+            "/help - показать эту справку"
+        )
+    
+    # Простой обработчик для тестового сообщения
+    async def test_message_handler(message: types.Message):
+        logger.info(f"Получено сообщение от пользователя {message.from_user.id}: {message.text}")
+        await message.answer("Получил ваше сообщение. Для начала работы введите /start")
+    
+    # Регистрация обработчиков
+    dp.register_message_handler(cmd_start, commands=["start"])
+    dp.register_message_handler(cmd_help, commands=["help"])
+    dp.register_message_handler(test_message_handler)
+    
+    # Функция для обработки обновлений от Telegram
+    async def process_update(update_json):
+        logger.info("Получено обновление от Telegram")
+        logger.info(f"Данные обновления: {json.dumps(update_json)[:200]}...")
+        
+        # Создаем объект Update из JSON-данных
+        update = types.Update(**update_json)
+        
+        # Обрабатываем обновление через диспетчер
+        results = await dp.process_update(update)
+        logger.info(f"Результаты обработки: {results}")
+        
+        return {"ok": True}
+
+except ImportError as e:
+    logger.error(f"Ошибка импорта aiogram: {e}")
+    
+    # Заглушка функции при отсутствии aiogram
+    async def process_update(update_json):
+        logger.info("Получено обновление от Telegram, но aiogram не установлен")
+        return {
+            "error": "Модуль aiogram не установлен или несовместим с текущей версией Python",
+            "python_version": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
+        }
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -88,7 +101,8 @@ class handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json.dumps({
                 "status": "error",
-                "error": str(e)
+                "error": str(e),
+                "python_version": f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
             }).encode('utf-8'))
             
     def do_GET(self):

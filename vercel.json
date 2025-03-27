@@ -19,6 +19,9 @@
         { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Accept" }
       ]
     }
+  ],
+  "builds": [
+    { "src": "api/*.py", "use": "@vercel/python@3.1.33" }
   ]
 }
 
